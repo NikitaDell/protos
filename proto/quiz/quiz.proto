@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package quiz;
+
+option go_package = "pushkarev.quiz.v1;quizv1";
+
+service Quiz {
+    rpc GetQuestion(GetQuestionRequest) returns (GetQuestionResponse);
+    rpc RegisterAnswer(RegisterAnswerRequest) returns (RegisterAnswerResponse);
+    rpc CheckAnswer(CheckAnswerRequest) returns (CheckAnswerResponse);
+
+}
+
+message GetQuestionRequest {
+    int64 user_id = 1;
+}
+
+message GetQuestionResponse {
+    string question = 2;
+    repeated string options = 3;
+}
+
+message RegisterAnswerRequest {
+    int64 user_id = 1;
+    int32 option_id = 2;
+}
+
+message RegisterAnswerResponse {}
+
+message CheckAnswerRequest {
+    int64 user_id = 1;
+}
+
+message CheckAnswerResponse {
+    bool right = 1;
+}
